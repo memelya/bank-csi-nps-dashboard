@@ -20,7 +20,7 @@ export function CustomerScoringTable({ customers }: { customers: Customer[] }) {
 
   return (
     <section id="scoring" className="section-card scroll-mt-20">
-      <div className="section-heading"><span>05</span><div><h2>Клиентский скоринг</h2><p>Таблица показывает, как вероятность превращается в причину, флаг исключения и рекомендуемое действие для клиентской базы.</p></div></div>
+      <div className="section-heading"><span>06</span><div><h2>Клиентский скоринг</h2><p>На уровне клиента логика становится операционной: вероятность → причина → recommended action → exclusion/inclusion flag.</p></div></div>
       <div className="filter-grid">
         {(Object.keys(filters) as (keyof typeof filters)[]).map((key) => (
           <label key={key}> {labels[key]}

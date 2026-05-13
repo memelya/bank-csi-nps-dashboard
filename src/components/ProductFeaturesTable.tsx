@@ -9,7 +9,7 @@ const rows = [
 export function ProductFeaturesTable() {
   return (
     <section id="features" className="section-card scroll-mt-20">
-      <div className="section-heading"><span>04</span><div><h2>Продуктовые фичи и связанные базы</h2><p>Вероятные детракторы не должны попадать в агрессивные продажи до устранения причины негативного опыта.</p></div></div>
+      <div className="section-heading"><span>05</span><div><h2>Продуктовые фичи и связанные базы</h2><p>Здесь драйверы переводятся в продуктовые фичи и конкретные правила включения/исключения. Это мост от аналитики к работе кампаний.</p></div></div>
       <div className="table-wrap">
         <table>
           <thead><tr><th>Фича</th><th>Сигналы</th><th>Клиентская база</th><th>Риск / потенциал</th><th>Включить в инициативы</th><th>Исключить из инициатив</th></tr></thead>

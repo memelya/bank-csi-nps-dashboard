@@ -7,6 +7,7 @@ import { KpiCard } from "./components/KpiCard";
 import { Navigation } from "./components/Navigation";
 import { ProductFeaturesTable } from "./components/ProductFeaturesTable";
 import { SegmentCharts } from "./components/SegmentCharts";
+import { ReactivePredictiveBridge } from "./components/ReactivePredictiveBridge";
 import { generateSyntheticData } from "./data/generateSyntheticData";
 
 const kpis = [
@@ -33,8 +34,8 @@ export default function App() {
             <div className="grid gap-8 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
               <div>
                 <p className="eyebrow">Executive dashboard · синтетические данные · без backend</p>
-                <h1>Предиктивная обратная связь CSI/NPS по продукту «Кредитная карта»</h1>
-                <p className="lead">Определение вероятных детракторов и промоутеров среди клиентов, которые не оставляли обратную связь. Логика: клиент → продукт → вероятность статуса → причина → клиентская база → действие → ожидаемый эффект.</p>
+                <h1>От опросов CSI/NPS к управлению всей клиентской базой</h1>
+                <p className="lead">Прототип показывает не отдельные графики, а последовательную бизнес-логику: что уже видно в реактивной обратной связи, что остаётся слепой зоной, как предиктивная модель переносит эти паттерны на клиентов без ответа и какие действия должен принять банк.</p>
               </div>
               <div className="hero-panel">
                 <div><ShieldCheck /><span>Нет реальных персональных данных</span></div>
@@ -46,11 +47,12 @@ export default function App() {
               {kpis.map(([title, value, tone, note]) => <KpiCard key={title} title={title} value={value} tone={tone} note={note} />)}
             </div>
             <div className="executive-note">
-              <strong>Управленческий вывод.</strong> Модель позволяет перейти от реактивного сбора обратной связи к предиктивному управлению клиентским опытом: заранее выявлять вероятных детракторов, исключать их из нерелевантных продажных кампаний и направлять в сервисные сценарии.
+              <strong>Управленческий вывод.</strong> Реактивный CSI/NPS остаётся источником правды по ответившим клиентам. Предиктивная разметка нужна не для замены опроса, а для масштабирования его выводов на 90% базы без обратной связи и для принятия решений: кого не трогать продажами, кого вести в care, а кого включать в ростовые инициативы.
             </div>
           </div>
         </section>
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 lg:px-8">
+          <ReactivePredictiveBridge />
           <SegmentCharts />
           <DriversSection />
           <ProductFeaturesTable />

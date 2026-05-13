@@ -11,6 +11,14 @@ main { background: radial-gradient(circle at top left, rgba(59,130,246,.12), tra
 .hero-panel div { display: flex; align-items: center; gap: .75rem; color: #334155; font-weight: 650; }
 .hero-panel svg { width: 1.3rem; height: 1.3rem; color: #2563eb; flex: none; }
 .executive-note { margin-top: 1.5rem; border-left: 4px solid #2563eb; border-radius: 1rem; background: white; padding: 1rem 1.25rem; color: #334155; box-shadow: 0 10px 30px rgba(15,23,42,.05); }
+.story-flow { display: grid; gap: 1rem; margin-bottom: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.story-flow article { position: relative; border: 1px solid #dbe5f2; border-radius: 1.2rem; background: linear-gradient(180deg, #ffffff, #f8fafc); padding: 1rem; min-height: 126px; }
+.story-flow strong { display: block; color: #0f172a; font-size: 1rem; margin-bottom: .45rem; }
+.story-flow span { color: #64748b; line-height: 1.45; font-size: .92rem; }
+.decision-card { border: 1px solid #c7d2fe; border-radius: 1.4rem; background: linear-gradient(180deg, #eef2ff, #fff); padding: 1.25rem; }
+.decision-card h3 { margin: .4rem 0 .75rem; font-size: 1.35rem; line-height: 1.15; letter-spacing: -.03em; color: #0f172a; }
+.decision-card p, .decision-card li { color: #475569; line-height: 1.55; }
+.decision-card ul { margin: 1rem 0 0; padding-left: 1.2rem; }
 .section-card { border: 1px solid #dbe5f2; border-radius: 1.75rem; background: rgba(255,255,255,.92); padding: clamp(1.1rem, 2vw, 2rem); box-shadow: 0 18px 45px rgba(15,23,42,.06); }
 .section-heading { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem; }
 .section-heading > span { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 999px; background: #eff6ff; color: #2563eb; font-weight: 800; }

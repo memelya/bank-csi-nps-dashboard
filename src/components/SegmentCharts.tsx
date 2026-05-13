@@ -8,7 +8,7 @@ export function SegmentCharts() {
   return (
     <section id="segments" className="section-card scroll-mt-20">
       <div className="section-heading">
-        <span>02</span>
+        <span>03</span>
         <div>
           <h2>Карта сегментов</h2>
           <p>Модель переводит вероятности в управляемые клиентские базы: кого исключить из продаж, кого включить в care, а кого — в ростовые инициативы.</p>

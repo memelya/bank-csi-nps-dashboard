@@ -1,10 +1,11 @@
 const items = [
   ["Executive Summary", "summary"],
+  ["Reactive vs Predictive", "method"],
   ["Сегменты", "segments"],
   ["Драйверы", "drivers"],
-  ["Продуктовые фичи", "features"],
-  ["Клиентский скоринг", "scoring"],
-  ["Симулятор инициатив", "simulator"],
+  ["Фичи", "features"],
+  ["Скоринг", "scoring"],
+  ["Инициативы", "simulator"],
 ];
 
 export function Navigation() {
