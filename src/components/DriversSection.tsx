@@ -31,7 +31,7 @@ function HorizontalChart({ data, color }: { data: { name: string; clients: numbe
 
 export function DriversSection() {
   return (
-    <section id="drivers" className="section-card scroll-mt-20">
+    <section id="drivers" className="section-card scroll-mt-28 lg:scroll-mt-20">
       <div className="section-heading"><span>04</span><div><h2>Драйверы клиентского опыта</h2><p>После сравнения reactive vs predictive смотрим не просто на частоты, а на причины, которые объясняют управленческое действие: исключить, включить в care или развивать через cross-sell.</p></div></div>
       <div className="grid gap-6 xl:grid-cols-2">
         <div className="chart-card"><h3>Топ-драйверы детракции</h3><HorizontalChart data={detractor} color="#b91c1c" /></div>

@@ -6,7 +6,7 @@ const format = (value: unknown) => new Intl.NumberFormat("ru-RU").format(Number(
 
 export function SegmentCharts() {
   return (
-    <section id="segments" className="section-card scroll-mt-20">
+    <section id="segments" className="section-card scroll-mt-28 lg:scroll-mt-20">
       <div className="section-heading">
         <span>03</span>
         <div>
@@ -40,14 +40,14 @@ export function SegmentCharts() {
           </ResponsiveContainer>
         </div>
       </div>
-      <div className="table-wrap mt-6">
+      <div className="table-wrap mobile-card-table mt-6">
         <table>
           <thead><tr><th>Сегмент</th><th>Условие</th><th>Клиентов</th><th>Доля базы</th><th>Основное действие</th></tr></thead>
           <tbody>
             {segmentSummary.map((row) => (
               <tr key={row.segment}>
-                <td><span className="dot" style={{ background: segmentColors[row.segment] }} />{row.segment}</td>
-                <td>{row.condition}</td><td>{format(row.clients)}</td><td>{row.share}</td><td>{row.action}</td>
+                <td data-label="Сегмент"><span className="dot" style={{ background: segmentColors[row.segment] }} />{row.segment}</td>
+                <td data-label="Условие">{row.condition}</td><td data-label="Клиентов">{format(row.clients)}</td><td data-label="Доля базы">{row.share}</td><td data-label="Основное действие">{row.action}</td>
               </tr>
             ))}
           </tbody>

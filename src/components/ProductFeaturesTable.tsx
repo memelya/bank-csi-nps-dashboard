@@ -1,3 +1,5 @@
+const headers = ["Фича", "Сигналы", "Клиентская база", "Риск / потенциал", "Включить в инициативы", "Исключить из инициатив"];
+
 const rows = [
   ["Непонимание льготного периода", "обращения по льготному периоду, просмотр FAQ, начисление процентов", "72 000", "высокий риск детракции", "образовательный сценарий, калькулятор льготного периода, push с датой платежа", "агрессивное увеличение трат"],
   ["Комиссионное раздражение", "комиссии за снятие, SMS-информирование, платные услуги", "48 000", "средний / высокий риск", "прозрачное объяснение комиссий, отключение ненужных услуг", "кампании с платными допуслугами"],
@@ -8,12 +10,12 @@ const rows = [
 
 export function ProductFeaturesTable() {
   return (
-    <section id="features" className="section-card scroll-mt-20">
+    <section id="features" className="section-card scroll-mt-28 lg:scroll-mt-20">
       <div className="section-heading"><span>05</span><div><h2>Продуктовые фичи и связанные базы</h2><p>Здесь драйверы переводятся в продуктовые фичи и конкретные правила включения/исключения. Это мост от аналитики к работе кампаний.</p></div></div>
-      <div className="table-wrap">
+      <div className="table-wrap mobile-card-table">
         <table>
-          <thead><tr><th>Фича</th><th>Сигналы</th><th>Клиентская база</th><th>Риск / потенциал</th><th>Включить в инициативы</th><th>Исключить из инициатив</th></tr></thead>
-          <tbody>{rows.map((row) => <tr key={row[0]}>{row.map((cell) => <td key={cell}>{cell}</td>)}</tr>)}</tbody>
+          <thead><tr>{headers.map((header) => <th key={header}>{header}</th>)}</tr></thead>
+          <tbody>{rows.map((row) => <tr key={row[0]}>{row.map((cell, index) => <td data-label={headers[index]} key={cell}>{cell}</td>)}</tr>)}</tbody>
         </table>
       </div>
     </section>

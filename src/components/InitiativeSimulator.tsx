@@ -12,7 +12,7 @@ export function InitiativeSimulator() {
   const [selected, setSelected] = useState(initiatives[0].name);
   const initiative = initiatives.find((item) => item.name === selected)!;
   return (
-    <section id="simulator" className="section-card scroll-mt-20">
+    <section id="simulator" className="section-card scroll-mt-28 lg:scroll-mt-20">
       <div className="section-heading"><span>07</span><div><h2>Симулятор инициатив</h2><p>Финальный слой — управленческое решение. Для каждой инициативы видны целевая база, исключения, ожидаемый эффект, риск и канал коммуникации.</p></div></div>
       <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">

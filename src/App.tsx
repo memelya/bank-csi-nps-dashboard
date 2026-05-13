@@ -29,8 +29,8 @@ export default function App() {
     <>
       <Navigation />
       <main>
-        <section id="summary" className="hero scroll-mt-20">
-          <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8 lg:py-14">
+        <section id="summary" className="hero scroll-mt-28 lg:scroll-mt-20">
+          <div className="mx-auto max-w-7xl px-4 py-8 sm:py-10 lg:px-8 lg:py-14">
             <div className="grid gap-8 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
               <div>
                 <p className="eyebrow">Executive dashboard · синтетические данные · без backend</p>
@@ -43,7 +43,7 @@ export default function App() {
                 <div><TrendingUp /><span>Фокус на управленческом решении, а не ML-модели</span></div>
               </div>
             </div>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
               {kpis.map(([title, value, tone, note]) => <KpiCard key={title} title={title} value={value} tone={tone} note={note} />)}
             </div>
             <div className="executive-note">
@@ -51,7 +51,7 @@ export default function App() {
             </div>
           </div>
         </section>
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:gap-8 sm:py-8 lg:px-8">
           <ReactivePredictiveBridge />
           <SegmentCharts />
           <DriversSection />

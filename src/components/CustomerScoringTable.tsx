@@ -19,7 +19,7 @@ export function CustomerScoringTable({ customers }: { customers: Customer[] }) {
   const update = (key: keyof typeof filters, value: string) => setFilters((current) => ({ ...current, [key]: value }));
 
   return (
-    <section id="scoring" className="section-card scroll-mt-20">
+    <section id="scoring" className="section-card scroll-mt-28 lg:scroll-mt-20">
       <div className="section-heading"><span>06</span><div><h2>Клиентский скоринг</h2><p>На уровне клиента логика становится операционной: вероятность → причина → recommended action → exclusion/inclusion flag.</p></div></div>
       <div className="filter-grid">
         {(Object.keys(filters) as (keyof typeof filters)[]).map((key) => (
@@ -32,11 +32,11 @@ export function CustomerScoringTable({ customers }: { customers: Customer[] }) {
         ))}
       </div>
       <p className="mb-3 text-sm text-slate-500">Показано: {filtered.length} строк из {rows.length}. Сгенерировано локально: {customers.length} клиентов.</p>
-      <div className="table-wrap scoring-table">
+      <div className="table-wrap scoring-table mobile-card-table">
         <table>
           <thead><tr><th>Client ID</th><th>Сегмент</th><th>P(детрактор)</th><th>P(промоутер)</th><th>Главный драйвер</th><th>Рекомендованное действие</th><th>Exclusion flag</th><th>Inclusion flag</th></tr></thead>
           <tbody>{filtered.slice(0, 60).map((row) => <tr key={row.clientId}>
-            <td>{row.clientId}</td><td><span className="dot" style={{ background: segmentColors[row.segment] }} />{row.segment}</td><td>{row.detractorProbability.toFixed(2)}</td><td>{row.promoterProbability.toFixed(2)}</td><td>{row.mainDriver}</td><td>{row.recommendedAction}</td><td>{row.exclusionFlag}</td><td>{row.inclusionFlag}</td>
+            <td data-label="Client ID">{row.clientId}</td><td data-label="Сегмент"><span className="dot" style={{ background: segmentColors[row.segment] }} />{row.segment}</td><td data-label="P(детрактор)">{row.detractorProbability.toFixed(2)}</td><td data-label="P(промоутер)">{row.promoterProbability.toFixed(2)}</td><td data-label="Главный драйвер">{row.mainDriver}</td><td data-label="Рекомендованное действие">{row.recommendedAction}</td><td data-label="Exclusion flag">{row.exclusionFlag}</td><td data-label="Inclusion flag">{row.inclusionFlag}</td>
           </tr>)}</tbody>
         </table>
       </div>

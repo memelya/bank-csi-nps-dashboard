@@ -22,7 +22,7 @@ const driverOverlap = [
 
 export function ReactivePredictiveBridge() {
   return (
-    <section id="method" className="section-card scroll-mt-20">
+    <section id="method" className="section-card scroll-mt-28 lg:scroll-mt-20">
       <div className="section-heading">
         <span>02</span>
         <div>
