@@ -1,4 +1,5 @@
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+import { ChartFrame } from "./ChartFrame";
 
 type DriverDatum = { name: string; clients: number };
 
@@ -15,17 +16,19 @@ const promoter: DriverDatum[] = [
 
 const format = (value: unknown) => new Intl.NumberFormat("ru-RU").format(Number(Array.isArray(value) ? value[0] : value ?? 0));
 
-function HorizontalChart({ data, color }: { data: { name: string; clients: number }[]; color: string }) {
+function HorizontalChart({ data, color }: { data: DriverDatum[]; color: string }) {
   return (
-    <ResponsiveContainer width="100%" height={340}>
-      <BarChart data={data} layout="vertical" margin={{ left: 20, right: 24 }}>
-        <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-        <XAxis type="number" tickFormatter={(v) => `${Number(v) / 1000}k`} />
-        <YAxis dataKey="name" type="category" width={155} tick={{ fontSize: 12 }} />
-        <Tooltip formatter={(value) => `${format(value)} клиентов`} />
-        <Bar dataKey="clients" fill={color} radius={[0, 8, 8, 0]} />
-      </BarChart>
-    </ResponsiveContainer>
+    <ChartFrame height={340} mobileHeight={390}>
+      {({ width, height }) => (
+        <BarChart width={width} height={height} data={data} layout="vertical" margin={{ left: width < 420 ? 6 : 20, right: 12 }}>
+          <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+          <XAxis type="number" tickFormatter={(v) => `${Number(v) / 1000}k`} tick={{ fontSize: 11 }} />
+          <YAxis dataKey="name" type="category" width={width < 420 ? 118 : 155} tick={{ fontSize: width < 420 ? 10 : 12 }} />
+          <Tooltip formatter={(value) => `${format(value)} клиентов`} />
+          <Bar dataKey="clients" fill={color} radius={[0, 8, 8, 0]} />
+        </BarChart>
+      )}
+    </ChartFrame>
   );
 }
 

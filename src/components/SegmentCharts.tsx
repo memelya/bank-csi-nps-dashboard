@@ -1,5 +1,6 @@
-import { Bar, BarChart, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, Cell, Pie, PieChart, Tooltip, XAxis, YAxis } from "recharts";
 import { segmentColors, segmentSummary } from "../data/generateSyntheticData";
+import { ChartFrame } from "./ChartFrame";
 
 const chartData = segmentSummary.map((item) => ({ name: item.segment, value: item.clients, share: item.share }));
 const format = (value: unknown) => new Intl.NumberFormat("ru-RU").format(Number(Array.isArray(value) ? value[0] : value ?? 0));
@@ -17,27 +18,31 @@ export function SegmentCharts() {
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="chart-card">
           <h3>Распределение базы</h3>
-          <ResponsiveContainer width="100%" height={310}>
-            <PieChart>
-              <Pie data={chartData} dataKey="value" nameKey="name" innerRadius={72} outerRadius={118} paddingAngle={3}>
-                {chartData.map((entry) => <Cell key={entry.name} fill={segmentColors[entry.name]} />)}
-              </Pie>
-              <Tooltip formatter={(value) => `${format(value)} клиентов`} />
-            </PieChart>
-          </ResponsiveContainer>
+          <ChartFrame height={310} mobileHeight={260}>
+            {({ width, height }) => (
+              <PieChart width={width} height={height}>
+                <Pie data={chartData} dataKey="value" nameKey="name" innerRadius={width < 420 ? 48 : 72} outerRadius={width < 420 ? 88 : 118} paddingAngle={3}>
+                  {chartData.map((entry) => <Cell key={entry.name} fill={segmentColors[entry.name]} />)}
+                </Pie>
+                <Tooltip formatter={(value) => `${format(value)} клиентов`} />
+              </PieChart>
+            )}
+          </ChartFrame>
         </div>
         <div className="chart-card">
           <h3>Объём сегментов</h3>
-          <ResponsiveContainer width="100%" height={310}>
-            <BarChart data={chartData} margin={{ left: 12, right: 16 }}>
-              <XAxis dataKey="name" tick={{ fontSize: 11 }} interval={0} angle={-12} textAnchor="end" height={80} />
-              <YAxis tickFormatter={(v) => `${v / 1000}k`} />
-              <Tooltip formatter={(value) => `${format(value)} клиентов`} />
-              <Bar dataKey="value" radius={[8, 8, 0, 0]}>
-                {chartData.map((entry) => <Cell key={entry.name} fill={segmentColors[entry.name]} />)}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <ChartFrame height={310} mobileHeight={300}>
+            {({ width, height }) => (
+              <BarChart width={width} height={height} data={chartData} margin={{ left: width < 420 ? -14 : 12, right: 8, bottom: width < 420 ? 36 : 0 }}>
+                <XAxis dataKey="name" tick={{ fontSize: width < 420 ? 9 : 11 }} interval={0} angle={width < 420 ? -28 : -12} textAnchor="end" height={width < 420 ? 96 : 80} />
+                <YAxis tickFormatter={(v) => `${v / 1000}k`} tick={{ fontSize: 11 }} />
+                <Tooltip formatter={(value) => `${format(value)} клиентов`} />
+                <Bar dataKey="value" radius={[8, 8, 0, 0]}>
+                  {chartData.map((entry) => <Cell key={entry.name} fill={segmentColors[entry.name]} />)}
+                </Bar>
+              </BarChart>
+            )}
+          </ChartFrame>
         </div>
       </div>
       <div className="table-wrap mobile-card-table mt-6">

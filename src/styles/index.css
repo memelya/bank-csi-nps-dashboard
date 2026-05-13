@@ -29,7 +29,8 @@ main { background: radial-gradient(circle at top left, rgba(59,130,246,.12), tra
 .section-heading p { margin: .55rem 0 0; max-width: 900px; color: #64748b; line-height: 1.55; }
 .chart-card { min-width: 0; overflow: hidden; border: 1px solid #e2e8f0; border-radius: 1.3rem; background: #fff; padding: 1rem; }
 .chart-card h3 { margin: .25rem .25rem 1rem; font-size: 1.05rem; color: #0f172a; }
-.recharts-wrapper, .recharts-surface { max-width: 100%; }
+.chart-frame { width: 100%; min-width: 0; overflow: hidden; }
+.chart-frame svg { max-width: 100%; }
 .recharts-text { font-size: 12px; }
 .table-wrap { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 1.2rem; background: white; -webkit-overflow-scrolling: touch; }
 table { width: 100%; border-collapse: collapse; min-width: 860px; }
