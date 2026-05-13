@@ -1,0 +1,13 @@
+.env
+.env.*
+node_modules/
+.next/
+dist/
+build/
+.vercel/
+coverage/
+logs/
+*.log
+.DS_Store
+tsconfig.tsbuildinfo
+tsconfig.*.tsbuildinfo

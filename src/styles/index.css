@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #0f172a; background: #f6f8fb; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+main { background: radial-gradient(circle at top left, rgba(59,130,246,.12), transparent 34rem), #f6f8fb; }
+.hero h1 { max-width: 980px; font-size: clamp(2.2rem, 5vw, 5rem); line-height: .96; letter-spacing: -0.06em; font-weight: 760; color: #020617; }
+.lead { margin-top: 1.5rem; max-width: 850px; font-size: clamp(1.05rem, 2vw, 1.35rem); line-height: 1.55; color: #475569; }
+.eyebrow { font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #2563eb; }
+.hero-panel { display: grid; gap: .85rem; border: 1px solid #dbe5f2; border-radius: 1.5rem; background: rgba(255,255,255,.82); padding: 1.25rem; box-shadow: 0 20px 50px rgba(15,23,42,.08); }
+.hero-panel div { display: flex; align-items: center; gap: .75rem; color: #334155; font-weight: 650; }
+.hero-panel svg { width: 1.3rem; height: 1.3rem; color: #2563eb; flex: none; }
+.executive-note { margin-top: 1.5rem; border-left: 4px solid #2563eb; border-radius: 1rem; background: white; padding: 1rem 1.25rem; color: #334155; box-shadow: 0 10px 30px rgba(15,23,42,.05); }
+.section-card { border: 1px solid #dbe5f2; border-radius: 1.75rem; background: rgba(255,255,255,.92); padding: clamp(1.1rem, 2vw, 2rem); box-shadow: 0 18px 45px rgba(15,23,42,.06); }
+.section-heading { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem; }
+.section-heading > span { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 999px; background: #eff6ff; color: #2563eb; font-weight: 800; }
+.section-heading h2 { margin: 0; font-size: clamp(1.55rem, 3vw, 2.25rem); letter-spacing: -.04em; color: #020617; }
+.section-heading p { margin: .4rem 0 0; max-width: 900px; color: #64748b; line-height: 1.55; }
+.chart-card { border: 1px solid #e2e8f0; border-radius: 1.3rem; background: #fff; padding: 1rem; }
+.chart-card h3 { margin: .25rem .25rem 1rem; font-size: 1.05rem; color: #0f172a; }
+.table-wrap { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 1.2rem; background: white; }
+table { width: 100%; border-collapse: collapse; min-width: 860px; }
+th { background: #f8fafc; color: #475569; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; }
+th, td { padding: .9rem 1rem; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+td { color: #334155; font-size: .92rem; }
+tr:last-child td { border-bottom: 0; }
+.dot { display: inline-block; width: .65rem; height: .65rem; border-radius: 999px; margin-right: .5rem; vertical-align: middle; }
+.insight-card { border: 1px solid #e2e8f0; border-radius: 1.25rem; background: linear-gradient(180deg, #fff, #f8fafc); padding: 1rem; }
+.insight-card h3 { margin: .35rem 0 .8rem; font-size: 1.05rem; color: #020617; }
+.insight-card dl { display: grid; gap: .35rem; margin: 0; }
+.insight-card dt { color: #64748b; font-size: .75rem; font-weight: 800; text-transform: uppercase; }
+.insight-card dd { margin: 0 0 .45rem; color: #334155; }
+.filter-grid { display: grid; gap: .85rem; margin-bottom: 1rem; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.filter-grid label { display: grid; gap: .35rem; font-size: .82rem; font-weight: 700; color: #475569; }
+select { border: 1px solid #cbd5e1; border-radius: .8rem; background: white; padding: .72rem .8rem; color: #0f172a; }
+.scoring-table { max-height: 560px; overflow: auto; }
+.scoring-table thead { position: sticky; top: 0; z-index: 1; }
+@media (max-width: 768px) { .hero-panel { margin-top: 1rem; } .section-heading { flex-direction: column; } }
