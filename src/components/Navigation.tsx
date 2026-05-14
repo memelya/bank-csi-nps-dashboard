@@ -1,11 +1,13 @@
 const items = [
-  ["Executive Summary", "summary"],
-  ["Reactive vs Predictive", "method"],
+  ["Summary", "summary"],
+  ["Метод", "method"],
+  ["Финансы", "impact"],
   ["Сегменты", "segments"],
-  ["Драйверы", "drivers"],
-  ["Фичи", "features"],
+  ["Drill-down", "drilldown"],
+  ["Root cause", "root-cause"],
+  ["Тренды", "trends"],
+  ["Actions", "actions"],
   ["Скоринг", "scoring"],
-  ["Инициативы", "simulator"],
 ];
 
 export function Navigation() {

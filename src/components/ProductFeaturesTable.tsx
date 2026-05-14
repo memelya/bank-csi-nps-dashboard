@@ -11,7 +11,7 @@ const rows = [
 export function ProductFeaturesTable() {
   return (
     <section id="features" className="section-card scroll-mt-28 lg:scroll-mt-20">
-      <div className="section-heading"><span>05</span><div><h2>Продуктовые фичи и связанные базы</h2><p>Здесь драйверы переводятся в продуктовые фичи и конкретные правила включения/исключения. Это мост от аналитики к работе кампаний.</p></div></div>
+      <div className="section-heading"><span>10</span><div><h2>Продуктовые фичи и связанные базы</h2><p>Здесь драйверы переводятся в продуктовые фичи и конкретные правила включения/исключения. Это мост от аналитики к работе кампаний.</p></div></div>
       <div className="table-wrap mobile-card-table">
         <table>
           <thead><tr>{headers.map((header) => <th key={header}>{header}</th>)}</tr></thead>

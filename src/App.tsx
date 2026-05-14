@@ -1,12 +1,17 @@
 import { useMemo } from "react";
 import { ShieldCheck, TrendingUp, UsersRound } from "lucide-react";
+import { ActionQueue } from "./components/ActionQueue";
 import { CustomerScoringTable } from "./components/CustomerScoringTable";
 import { DriversSection } from "./components/DriversSection";
+import { ExecutiveImpact } from "./components/ExecutiveImpact";
 import { InitiativeSimulator } from "./components/InitiativeSimulator";
 import { KpiCard } from "./components/KpiCard";
 import { Navigation } from "./components/Navigation";
 import { ProductFeaturesTable } from "./components/ProductFeaturesTable";
+import { RootCauseExplorer } from "./components/RootCauseExplorer";
 import { SegmentCharts } from "./components/SegmentCharts";
+import { SegmentDrilldown } from "./components/SegmentDrilldown";
+import { TrendDashboard } from "./components/TrendDashboard";
 import { ReactivePredictiveBridge } from "./components/ReactivePredictiveBridge";
 import { generateSyntheticData } from "./data/generateSyntheticData";
 
@@ -53,7 +58,12 @@ export default function App() {
         </section>
         <div className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:gap-8 sm:py-8 lg:px-8">
           <ReactivePredictiveBridge />
+          <ExecutiveImpact />
           <SegmentCharts />
+          <SegmentDrilldown />
+          <RootCauseExplorer />
+          <TrendDashboard />
+          <ActionQueue />
           <DriversSection />
           <ProductFeaturesTable />
           <CustomerScoringTable customers={customers} />

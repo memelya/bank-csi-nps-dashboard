@@ -1,4 +1,4 @@
-import { Bar, BarChart, CartesianGrid, Cell, ComposedChart, Legend, Line, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Cell, Tooltip, XAxis, YAxis } from "recharts";
 import { ChartFrame } from "./ChartFrame";
 
 const comparison = [
