@@ -29,6 +29,7 @@ main { background: radial-gradient(circle at top left, rgba(59,130,246,.12), tra
 .section-heading p { margin: .55rem 0 0; max-width: 900px; color: #64748b; line-height: 1.55; }
 .chart-card { min-width: 0; overflow: hidden; border: 1px solid #e2e8f0; border-radius: 1.3rem; background: #fff; padding: 1rem; }
 .chart-card h3 { margin: .25rem .25rem 1rem; font-size: 1.05rem; color: #0f172a; }
+.chart-note { margin: -.35rem .25rem 0; color: #64748b; line-height: 1.5; font-size: .92rem; }
 .chart-frame { width: 100%; min-width: 0; overflow: hidden; }
 .chart-frame svg { max-width: 100%; }
 .recharts-text { font-size: 12px; }
@@ -39,6 +40,29 @@ th, td { padding: .9rem 1rem; border-bottom: 1px solid #e2e8f0; vertical-align: 
 td { color: #334155; font-size: .92rem; }
 tr:last-child td { border-bottom: 0; }
 .dot { display: inline-block; width: .65rem; height: .65rem; border-radius: 999px; margin-right: .5rem; vertical-align: middle; }
+.comparison-table table { min-width: 720px; }
+.delta-pill { display: inline-flex; align-items: center; justify-content: center; min-width: 4.8rem; border-radius: 999px; padding: .3rem .65rem; font-weight: 800; font-size: .82rem; }
+.delta-pill.ok { background: #dcfce7; color: #166534; }
+.delta-pill.warn { background: #ffedd5; color: #9a3412; }
+.driver-matrix { display: grid; gap: .75rem; }
+.driver-row { display: grid; gap: .85rem; align-items: center; grid-template-columns: minmax(180px, 1fr) auto auto; border: 1px solid #e2e8f0; border-radius: 1rem; background: #fff; padding: .9rem; }
+.driver-row strong { display: block; color: #0f172a; }
+.driver-row span { color: #64748b; font-size: .86rem; line-height: 1.35; }
+.driver-row.red { border-color: #fecaca; background: #fff7f7; }
+.driver-row.orange { border-color: #fed7aa; background: #fff8f0; }
+.driver-row.blue { border-color: #bfdbfe; background: #f8fbff; }
+.driver-values { display: flex; flex-wrap: wrap; gap: .45rem; justify-content: flex-end; }
+.driver-values span { border-radius: 999px; background: rgba(255,255,255,.82); border: 1px solid #e2e8f0; padding: .35rem .55rem; color: #475569; }
+.driver-values b { color: #0f172a; }
+.driver-values .driver-delta { font-weight: 800; color: #0f172a; }
+.driver-badge { justify-self: end; border-radius: 999px; padding: .38rem .7rem; font-weight: 800; white-space: nowrap; }
+.driver-badge.blue { background: #dbeafe; color: #1d4ed8; }
+.driver-badge.orange { background: #ffedd5; color: #c2410c; }
+.driver-badge.red { background: #fee2e2; color: #b91c1c; }
+.method-score-grid { display: grid; gap: .65rem; margin: 1rem 0; }
+.method-score-grid div { border: 1px solid #dbe5f2; border-radius: 1rem; background: rgba(255,255,255,.7); padding: .8rem; }
+.method-score-grid strong { display: block; color: #0f172a; font-size: 1.25rem; }
+.method-score-grid span { color: #64748b; font-size: .88rem; }
 .insight-card { border: 1px solid #e2e8f0; border-radius: 1.25rem; background: linear-gradient(180deg, #fff, #f8fafc); padding: 1rem; }
 .insight-card h3 { margin: .35rem 0 .8rem; font-size: 1.05rem; color: #020617; }
 .insight-card dl { display: grid; gap: .35rem; margin: 0; }
@@ -65,6 +89,10 @@ select { width: 100%; border: 1px solid #cbd5e1; border-radius: .8rem; backgroun
   .story-flow article { min-height: auto; }
   .chart-card { border-radius: 1rem; padding: .75rem; }
   .chart-card h3 { font-size: .98rem; line-height: 1.25; }
+  .chart-note { font-size: .88rem; }
+  .driver-row { grid-template-columns: 1fr; align-items: stretch; }
+  .driver-values { justify-content: flex-start; }
+  .driver-badge { justify-self: start; white-space: normal; }
   .recharts-text { font-size: 10px; }
   .filter-grid { grid-template-columns: 1fr; }
   .mobile-card-table { border: 0; background: transparent; overflow: visible; }

@@ -14,12 +14,21 @@ const coverage = [
 ];
 
 const driverOverlap = [
-  { driver: "Высокая загрузка лимита", reactive: 18, predictive: 21 },
-  { driver: "Снижение активности", reactive: 15, predictive: 24 },
-  { driver: "Льготный период", reactive: 17, predictive: 16 },
-  { driver: "Комиссии", reactive: 12, predictive: 11 },
-  { driver: "Просмотр закрытия карты", reactive: 4, predictive: 8 },
+  { driver: "Высокая загрузка лимита", reactive: 18, predictive: 21, interpretation: "подтверждено", action: "масштабировать care-сценарии", tone: "blue" },
+  { driver: "Снижение активности", reactive: 15, predictive: 24, interpretation: "скрытый риск", action: "исключить из продаж и проверить удержание", tone: "red" },
+  { driver: "Льготный период", reactive: 17, predictive: 16, interpretation: "подтверждено", action: "уточнить коммуникации по правилам", tone: "blue" },
+  { driver: "Комиссии", reactive: 12, predictive: 11, interpretation: "подтверждено", action: "оставить в базе известных причин", tone: "blue" },
+  { driver: "Просмотр закрытия карты", reactive: 4, predictive: 8, interpretation: "модель расширяет картину", action: "перевести в retention/care", tone: "orange" },
 ];
+
+const getDelta = (predictive: number, reactive: number) => predictive - reactive;
+const formatDelta = (delta: number) => `${delta > 0 ? "+" : ""}${delta} п.п.`;
+const getComparisonStatus = (delta: number) => {
+  const abs = Math.abs(delta);
+  if (abs <= 2) return "совпадает";
+  if (abs <= 5) return "умеренное расхождение";
+  return "sample bias / скрытый риск";
+};
 
 export function ReactivePredictiveBridge() {
   return (
@@ -58,48 +67,66 @@ export function ReactivePredictiveBridge() {
         </div>
 
         <div className="chart-card xl:col-span-2">
-          <h3>Может ли реактивный сбор показать то же самое?</h3>
-          <ChartFrame height={280} mobileHeight={300}>
-            {({ width, height }) => (
-              <ComposedChart width={width} height={height} data={comparison} margin={{ left: width < 420 ? -18 : 0, right: 8, bottom: width < 420 ? 44 : 6 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                <XAxis dataKey="segment" tick={{ fontSize: width < 420 ? 10 : 12 }} angle={width < 420 ? -24 : 0} textAnchor={width < 420 ? "end" : "middle"} interval={0} height={width < 420 ? 78 : 36} />
-                <YAxis tickFormatter={(v) => `${v}%`} tick={{ fontSize: 11 }} />
-                <Tooltip formatter={(value) => `${value}%`} />
-                <Legend wrapperStyle={{ fontSize: 12 }} />
-                <Bar dataKey="reactive" name="Реактивный опрос" fill="#93c5fd" radius={[8, 8, 0, 0]} />
-                <Line dataKey="predictive" name="Предиктивная база" stroke="#0f172a" strokeWidth={3} dot={{ r: 5 }} />
-              </ComposedChart>
-            )}
-          </ChartFrame>
+          <h3>Насколько опрос репрезентативен для всей базы?</h3>
+          <p className="chart-note">Метод сравнения: считаем разницу между предиктивной базой и реактивным опросом в процентных пунктах. 0–2 п.п. — совпадает, 3–5 п.п. — зона внимания, больше 5 п.п. — возможный sample bias.</p>
+          <div className="table-wrap mobile-card-table comparison-table mt-4">
+            <table>
+              <thead><tr><th>Сегмент</th><th>Опрос</th><th>Модель</th><th>Δ</th><th>Вывод</th></tr></thead>
+              <tbody>
+                {comparison.map((row) => {
+                  const delta = getDelta(row.predictive, row.reactive);
+                  return (
+                    <tr key={row.segment}>
+                      <td data-label="Сегмент"><span className="dot" style={{ background: row.color }} />{row.segment}</td>
+                      <td data-label="Опрос">{row.reactive}%</td>
+                      <td data-label="Модель">{row.predictive}%</td>
+                      <td data-label="Δ"><span className={`delta-pill ${Math.abs(delta) <= 2 ? "ok" : "warn"}`}>{formatDelta(delta)}</span></td>
+                      <td data-label="Вывод">{getComparisonStatus(delta)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1fr_420px]">
         <div className="chart-card">
-          <h3>Где совпадают причины, а где предиктивная модель расширяет картину</h3>
-          <ChartFrame height={310} mobileHeight={330}>
-            {({ width, height }) => (
-              <ComposedChart width={width} height={height} data={driverOverlap} margin={{ left: width < 420 ? -18 : 0, right: 8, bottom: width < 420 ? 54 : 6 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                <XAxis dataKey="driver" tick={{ fontSize: width < 420 ? 10 : 12 }} angle={width < 420 ? -26 : 0} textAnchor={width < 420 ? "end" : "middle"} interval={0} height={width < 420 ? 90 : 42} />
-                <YAxis tickFormatter={(v) => `${v}%`} tick={{ fontSize: 11 }} />
-                <Tooltip formatter={(value) => `${value}%`} />
-                <Legend wrapperStyle={{ fontSize: 12 }} />
-                <Bar dataKey="reactive" name="В ответах CSI/NPS" fill="#bfdbfe" radius={[8, 8, 0, 0]} />
-                <Line dataKey="predictive" name="В неответившей базе" stroke="#b91c1c" strokeWidth={3} />
-              </ComposedChart>
-            )}
-          </ChartFrame>
+          <h3>Какие причины подтверждены опросом, а какие видны только в поведении?</h3>
+          <p className="chart-note">Метод сравнения: driver delta = доля причины в неответившей базе минус доля причины в ответах CSI/NPS. Большая положительная Δ показывает, где модель расширяет картину.</p>
+          <div className="driver-matrix mt-4">
+            {driverOverlap.map((row) => {
+              const delta = getDelta(row.predictive, row.reactive);
+              return (
+                <article className={`driver-row ${row.tone}`} key={row.driver}>
+                  <div>
+                    <strong>{row.driver}</strong>
+                    <span>{row.action}</span>
+                  </div>
+                  <div className="driver-values">
+                    <span>Опрос <b>{row.reactive}%</b></span>
+                    <span>Модель <b>{row.predictive}%</b></span>
+                    <span className="driver-delta">{formatDelta(delta)}</span>
+                  </div>
+                  <span className={`driver-badge ${row.tone}`}>{row.interpretation}</span>
+                </article>
+              );
+            })}
+          </div>
         </div>
         <div className="decision-card">
-          <p className="eyebrow">Ключевой вывод</p>
-          <h3>Да, реактивный сбор может показывать похожую структуру — и это хорошо.</h3>
-          <p>Если сегменты и драйверы совпадают, предиктивная модель валидирует опрос и масштабирует его на всю базу. Если расходятся — это сигнал sample bias: отвечают не все, а скрытые риски живут в поведении клиентов.</p>
+          <p className="eyebrow">Итог сравнения</p>
+          <h3>Опрос подтверждает базовую картину, модель показывает скрытые зоны риска.</h3>
+          <div className="method-score-grid">
+            <div><strong>4 из 4</strong><span>сегмента близки по структуре</span></div>
+            <div><strong>3 из 5</strong><span>причины подтверждены опросом</span></div>
+            <div><strong>2</strong><span>скрытых драйвера риска</span></div>
+          </div>
           <ul>
             <li><strong>Совпадение</strong> = можно масштабировать известные care-сценарии.</li>
-            <li><strong>Расхождение</strong> = нужно проверить гипотезу и исключить рискованные базы из продаж.</li>
-            <li><strong>Главная ценность</strong> = не новый NPS, а управляемая клиентская база для действий.</li>
+            <li><strong>Сильная положительная Δ</strong> = причина недооценена реактивным сбором.</li>
+            <li><strong>Действие</strong> = рискованные базы не продавать, а переводить в care/retention.</li>
           </ul>
         </div>
       </div>
